@@ -10,3 +10,4 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::get('api/v1/status', 'api\v1\EosStatusApiController@read');

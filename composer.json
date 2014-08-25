@@ -7,7 +7,10 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"paquettg/php-html-parser": "dev-master",
-        "barryvdh/laravel-ide-helper": "1.*"
+        "barryvdh/laravel-ide-helper": "1.*",
+        "league/fractal": "0.8.*",
+        "ellipsesynergie/api-response": "0.4.*",
+        "chrisbjr/api-guard": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

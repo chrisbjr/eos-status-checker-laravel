@@ -122,6 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider',
+        'Chrisbjr\ApiGuard\ApiGuardServiceProvider',
 
 	),
 
