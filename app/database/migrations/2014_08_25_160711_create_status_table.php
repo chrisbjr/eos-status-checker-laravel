@@ -17,6 +17,7 @@ class CreateStatusTable extends Migration
             $table->increments('id');
             $table->boolean('north_america');
             $table->boolean('europe');
+            $table->boolean('pts');
             $table->timestamps();
         });
     }

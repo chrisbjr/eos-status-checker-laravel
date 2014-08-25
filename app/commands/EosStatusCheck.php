@@ -24,8 +24,9 @@ class EosStatusCheck extends Command
 
     private $unixTimestamp = 0;
     private $statusArray = [
-        'na' => true,
-        'eu' => true
+        'na'  => true,
+        'eu'  => true,
+        'pts' => true,
     ];
 
     private $offlineStrings = [
@@ -95,6 +96,7 @@ class EosStatusCheck extends Command
                 $newStatus                = new Status;
                 $newStatus->north_america = ($this->statusArray['na']) ? 1 : 0;
                 $newStatus->europe        = ($this->statusArray['eu']) ? 1 : 0;
+                $newStatus->pts           = ($this->statusArray['pts']) ? 1 : 0;
                 $newStatus->created_at    = date('Y-m-d H:i:s', $this->unixTimestamp);
                 $newStatus->save();
             }
@@ -185,6 +187,22 @@ class EosStatusCheck extends Command
             } else {
                 $this->statusArray['eu'] = true;
                 $this->info("Europe server is ONLINE");
+            }
+        }
+        $ptsPos = strpos($string, 'pts');
+        if ($ptsPos !== false) {
+            // we got north american status
+
+            $ptsStrings = explode(' ', $m);
+
+            $intersect = array_intersect($this->offlineStrings, $ptsStrings);
+            if (count($intersect) > 0) {
+                // offline!
+                $this->statusArray['pts'] = false;
+                $this->info("Public test server is OFFLINE");
+            } else {
+                $this->statusArray['pts'] = true;
+                $this->info("Public test server is ONLINE");
             }
         }
     }
